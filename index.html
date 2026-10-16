@@ -1,0 +1,717 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#083f3d">
+
+  <title>Burnacare | Smart Wound Care Research</title>
+
+  <meta name="description"
+    content="Discover Burnacare, a student-led biomedical research concept exploring marine collagen-loaded microneedle patches for wound care.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --deep: #083f3d;
+      --deepest: #052d2c;
+      --mint: #d7f3e8;
+      --mint-dark: #a9dfce;
+      --teal: #168c82;
+      --ink: #142b2a;
+      --muted: #647774;
+      --paper: #f8fbf8;
+      --white: #ffffff;
+      --line: #e2ece7;
+      --radius: 24px;
+      --shadow: 0 18px 55px rgba(8,63,61,.09);
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      margin: 0;
+      font-family: "DM Sans", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.7;
+    }
+
+    body[dir="rtl"] {
+      font-family: "Cairo", sans-serif;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    button { font: inherit; cursor: pointer; }
+
+    img { display: block; max-width: 100%; }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: auto;
+    }
+
+    .topbar {
+      background: var(--deepest);
+      color: #d7f3e8;
+      text-align: center;
+      padding: 8px 16px;
+      font-size: 12px;
+      letter-spacing: 1.2px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(248,251,248,.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-size: 23px;
+      font-weight: 800;
+      color: var(--deep);
+      letter-spacing: -.7px;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      color: var(--deep);
+      background: var(--mint);
+      font-size: 22px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #3f5c57;
+    }
+
+    .nav-links a:hover { color: var(--teal); }
+
+    .lang-btn {
+      border: 1px solid #c8ded5;
+      background: white;
+      color: var(--deep);
+      border-radius: 30px;
+      padding: 9px 15px;
+      font-weight: 700;
+    }
+
+    .hero {
+      background: var(--deep);
+      color: white;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 55px;
+      padding-top: 80px;
+      padding-bottom: 85px;
+    }
+
+    .eyebrow {
+      color: var(--teal);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .hero .eyebrow { color: var(--mint-dark); }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      margin: 18px 0;
+      font-size: clamp(40px, 5.3vw, 67px);
+      line-height: 1.1;
+      letter-spacing: -2.5px;
+    }
+
+    body[dir="rtl"] h1 {
+      letter-spacing: 0;
+      line-height: 1.45;
+    }
+
+    .hero p {
+      color: #d0e4de;
+      font-size: 17px;
+      max-width: 510px;
+      line-height: 1.9;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 21px;
+      border-radius: 13px;
+      font-weight: 700;
+      font-size: 14px;
+      transition: transform .2s, background .2s;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-mint {
+      background: var(--mint);
+      color: var(--deep);
+    }
+
+    .btn-outline {
+      color: white;
+      border: 1px solid #6a9990;
+    }
+
+    .hero-image-wrap {
+      position: relative;
+    }
+
+    .hero-image {
+      width: 100%;
+      aspect-ratio: 4 / 4.5;
+      object-fit: cover;
+      border-radius: 28px;
+      background: #d9e8df;
+      box-shadow: 0 25px 70px #001e1c66;
+    }
+
+    .image-note {
+      position: absolute;
+      bottom: 18px;
+      left: 18px;
+      right: 18px;
+      padding: 14px 16px;
+      border-radius: 15px;
+      background: #063c3bdc;
+      color: white;
+      font-size: 12px;
+      backdrop-filter: blur(10px);
+    }
+
+    body[dir="rtl"] .image-note { text-align: right; }
+
+    .hero-foot {
+      border-top: 1px solid #ffffff24;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding-top: 22px;
+      color: #b9d8ce;
+      font-size: 12px;
+    }
+
+    section { padding: 92px 0; }
+
+    .section-heading {
+      max-width: 680px;
+      margin-bottom: 38px;
+    }
+
+    .section-heading h2 {
+      color: var(--deep);
+      font-size: clamp(30px, 4vw, 43px);
+      line-height: 1.25;
+      letter-spacing: -1px;
+      margin: 12px 0;
+    }
+
+    body[dir="rtl"] .section-heading h2 {
+      letter-spacing: 0;
+      line-height: 1.5;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .intro-art {
+      min-height: 350px;
+      border-radius: var(--radius);
+      background: var(--mint);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .intro-art img {
+      width: 100%;
+      height: 100%;
+      min-height: 350px;
+      object-fit: cover;
+    }
+
+    .intro-copy h2 {
+      color: var(--deep);
+      font-size: 34px;
+      line-height: 1.3;
+    }
+
+    .intro-copy p { color: var(--muted); }
+
+    .tag {
+      display: inline-block;
+      margin: 4px 4px 4px 0;
+      padding: 7px 12px;
+      background: #e6f5ed;
+      color: var(--deep);
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .science { background: #edf5f0; }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--line);
+      padding: 27px;
+      border-radius: 20px;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+
+    .card-icon {
+      width: 49px;
+      height: 49px;
+      display: grid;
+      place-items: center;
+      border-radius: 15px;
+      background: var(--mint);
+      font-size: 23px;
+      margin-bottom: 20px;
+    }
+
+    .card h3 {
+      color: var(--deep);
+      font-size: 19px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      counter-reset: step;
+    }
+
+    .step {
+      padding: 26px;
+      border-top: 2px solid var(--mint-dark);
+      background: white;
+      border-radius: 0 0 18px 18px;
+    }
+
+    .step-number {
+      color: var(--teal);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .step h3 {
+      color: var(--deep);
+      margin: 12px 0 8px;
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .research-note {
+      margin-top: 25px;
+      padding: 19px 22px;
+      border-left: 4px solid var(--teal);
+      background: white;
+      border-radius: 0 12px 12px 0;
+      color: #49645d;
+      font-size: 13px;
+    }
+
+    body[dir="rtl"] .research-note {
+      border-left: 0;
+      border-right: 4px solid var(--teal);
+      border-radius: 12px 0 0 12px;
+    }
+
+    .video-box {
+      background: var(--deep);
+      border-radius: 26px;
+      padding: 40px;
+      color: white;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .video-box h2 {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .video-box p {
+      color: #c7dfd7;
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .video-play {
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      background: var(--mint);
+      color: var(--deep);
+      display: grid;
+      place-items: center;
+      font-size: 25px;
+    }
+
+    .team-panel {
+      padding: 35px;
+      border: 1px solid var(--line);
+      background: white;
+      border-radius: 22px;
+      text-align: center;
+    }
+
+    .team-panel h3 { color: var(--deep); }
+
+    .team-panel p {
+      max-width: 650px;
+      margin: 0 auto 18px;
+      color: var(--muted);
+    }
+
+    .notice {
+      margin-top: 24px;
+      padding: 20px;
+      border-radius: 15px;
+      background: #fff6e6;
+      color: #765525;
+      font-size: 13px;
+    }
+
+    footer {
+      background: var(--deepest);
+      color: white;
+      padding: 40px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    footer p {
+      color: #b9d6ce;
+      font-size: 12px;
+      margin: 8px 0 0;
+    }
+
+    footer a { color: var(--mint); }
+
+    @media (max-width: 800px) {
+      .nav { min-height: 68px; }
+
+      .nav-links { display: none; }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        gap: 35px;
+      }
+
+      h1 {
+        font-size: clamp(40px, 11vw, 57px);
+      }
+
+      .hero-image {
+        aspect-ratio: 4 / 3.4;
+      }
+
+      .intro-grid { grid-template-columns: 1fr; gap: 30px; }
+
+      .cards, .steps { grid-template-columns: 1fr; }
+
+      section { padding: 65px 0; }
+
+      .video-box {
+        grid-template-columns: 1fr;
+        padding: 27px;
+      }
+
+      .hero-foot { flex-wrap: wrap; }
+
+      .section-heading h2 { font-size: 32px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar" data-en="A STUDENT-LED BIOMEDICAL RESEARCH CONCEPT"
+       data-ar="مشروع بحثي طلابي في التكنولوجيا الطبية الحيوية">
+    A STUDENT-LED BIOMEDICAL RESEARCH CONCEPT
+  </div>
+
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="Burnacare home">
+        <span class="brand-mark">✳</span>
+        <span>Burnacare</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#about" data-en="About" data-ar="عن المشروع">About</a>
+        <a href="#science" data-en="The Science" data-ar="الأساس العلمي">The Science</a>
+        <a href="#process" data-en="How It Works" data-ar="طريقة العمل">How It Works</a>
+        <a href="#video" data-en="Project Video" data-ar="فيديو المشروع">Project Video</a>
+        <a href="#team" data-en="Our Team" data-ar="الفريق">Our Team</a>
+      </nav>
+
+      <button class="lang-btn" id="langToggle" type="button"
+              aria-label="Switch language">عربي</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-inner">
+        <div>
+          <div class="eyebrow"
+               data-en="RETHINKING WOUND CARE"
+               data-ar="نستكشف مستقبل العناية بالجروح">
+            RETHINKING WOUND CARE
+          </div>
+
+          <h1 data-en="A Smarter Approach to Wound Care"
+              data-ar="رؤية أكثر تطورًا للعناية بالجروح">
+            A Smarter Approach to Wound Care
+          </h1>
+
+          <p data-en="Exploring marine collagen-loaded microneedle patch technology through a student-led biomedical research project."
+             data-ar="نستكشف تقنية اللاصقات ذات الإبر الدقيقة المحمّلة بالكولاجين البحري من خلال مشروع بحثي طلابي في التكنولوجيا الطبية الحيوية.">
+            Exploring marine collagen-loaded microneedle patch technology through a student-led biomedical research project.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-mint" href="#about">
+              <span data-en="Discover Our Project" data-ar="اكتشفي مشروعنا">Discover Our Project</span>
+              <span aria-hidden="true">↓</span>
+            </a>
+            <a class="btn btn-outline" href="#science"
+               data-en="Explore the Science" data-ar="اكتشفي الجانب العلمي">
+              Explore the Science
+            </a>
+          </div>
+
+          <div class="hero-foot" style="margin-top:35px">
+            <span data-en="BIOMEDICAL INNOVATION" data-ar="ابتكار في التكنولوجيا الطبية">BIOMEDICAL INNOVATION</span>
+            <span data-en="RESEARCH-DRIVEN CONCEPT" data-ar="فكرة قائمة على البحث العلمي">RESEARCH-DRIVEN CONCEPT</span>
+          </div>
+        </div>
+
+        <div class="hero-image-wrap">
+          <img class="hero-image"
+            src="https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=1000&q=85"
+            alt="Biomedical laboratory research"
+            onerror="this.onerror=null;this.src='https://placehold.co/800x900/e0f2e9/083f3d?text=Burnacare+Research'">
+
+          <div class="image-note"
+               data-en="Exploring microneedle technology for next-generation wound care."
+               data-ar="استكشاف تكنولوجيا الإبر الدقيقة لتطوير حلول مستقبلية للعناية بالجروح.">
+            Exploring microneedle technology for next-generation wound care.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container intro-grid">
+        <div class="intro-art">
+          <img
+            src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=900&q=85"
+            alt="Medical research and healthcare"
+            loading="lazy"
+            onerror="this.onerror=null;this.src='https://placehold.co/800x700/d7f3e8/083f3d?text=Biomedical+Research'">
+        </div>
+
+        <div class="intro-copy">
+          <div class="eyebrow" data-en="MEET BURNACARE" data-ar="تعرّفي على Burnacare">MEET BURNACARE</div>
+
+          <h2 data-en="A Research Concept with a Purpose"
+              data-ar="فكرة بحثية بهدف واضح">
+            A Research Concept with a Purpose
+          </h2>
+
+          <p data-en="Burnacare is a student-led project exploring the concept of a microneedle patch incorporating marine collagen for potential applications in first-degree burn care."
+             data-ar="Burnacare مشروع طلابي يستكشف فكرة لاصقة ذات إبر دقيقة تحتوي على الكولاجين البحري، لدراسة إمكانية استخدامها في العناية بحروق الدرجة الأولى.">
+            Burnacare is a student-led project exploring the concept of a microneedle patch incorporating marine collagen for potential applications in first-degree burn care.
+          </p>
+
+          <p data-en="Our goal is to understand the science, evaluate the proposed design, and explore its potential through appropriate research and testing."
+             data-ar="هدفنا هو فهم الأساس العلمي، وتقييم التصميم المقترح، ودراسة إمكاناته من خلال البحث والاختبارات المناسبة.">
+            Our goal is to understand the science, evaluate the proposed design, and explore its potential through appropriate research and testing.
+          </p>
+
+          <div>
+            <span class="tag">Biomedical Innovation</span>
+            <span class="tag">Microneedle Research</span>
+            <span class="tag">Marine Collagen</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="science" id="science">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow" data-en="THE SCIENCE BEHIND THE IDEA" data-ar="الأساس العلمي للفكرة">
+            THE SCIENCE BEHIND THE IDEA
+          </div>
+
+          <h2 data-en="Three Key Elements"
+              data-ar="ثلاثة عناصر أساسية">
+            Three Key Elements
+          </h2>
+
+          <p data-en="Understanding the components behind the Burnacare research concept."
+             data-ar="نتعرف على العناصر الأساسية التي تقوم عليها فكرة Burnacare البحثية.">
+            Understanding the components behind the Burnacare research concept.
+          </p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="card-icon">〰</div>
+            <h3 data-en="Marine Collagen" data-ar="الكولاجين البحري">Marine Collagen</h3>
+            <p data-en="Collagen is a structural protein studied in biomaterials and tissue engineering. Its suitability, stability, and performance depend on the formulation and supporting evidence."
+               data-ar="الكولاجين بروتين بنيوي يُدرس في مجال المواد الحيوية وهندسة الأنسجة. وتعتمد ملاءمته وثباته وأداؤه على التركيبة والأدلة العلمية المتاحة.">
+              Collagen is a structural protein studied in biomaterials and tissue engineering. Its suitability, stability, and performance depend on the formulation and supporting evidence.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">⌁</div>
+            <h3 data-en="Microneedle Technology" data-ar="تكنولوجيا الإبر الدقيقة">Microneedle Technology</h3>
+            <p data-en="Microneedles are microscopic projections investigated for delivering substances through or into superficial skin layers. Their safety depends on their design and intended application."
+               data-ar="الإبر الدقيقة بروزات مجهرية تُدرس لإيصال مواد عبر طبقات الجلد أو إلى داخلها. وتعتمد سلامتها على تصميمها وطريقة استخدامها.">
+              Microneedles are microscopic projections investigated for delivering substances through or into superficial skin layers. Their safety depends on their design and intended application.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">✳</div>
+            <h3 data-en="Wound Care Research" data-ar="أبحاث العناية بالجروح">Wound Care Research</h3>
+            <p data-en="The project explores a proposed approach to first-degree burn care. Its effectiveness and suitability must be established through appropriate scientific evaluation."
+               data-ar="يستكشف المشروع أسلوبًا مقترحًا للعناية بحروق الدرجة الأولى، مع ضرورة تقييم فعاليته وملاءمته من خلال اختبارات علمية مناسبة.">
+              The project explores a proposed approach to first-degree burn care. Its effectiveness and suitability must be established through appropriate scientific evaluation.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="process">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow" data-en="THE PROPOSED APPROACH" data-ar="آلية العمل المقترحة">
+            THE PROPOSED APPROACH
+          </div>
+
+          <h2 data-en="How the Concept Is Designed to Work"
+              data-ar="كيف يُفترض أن تعمل الفكرة؟">
+            How the Concept Is Designed to Work
+          </h2>
+
+          <p data-en="A simplified overview of the intended design. Actual performance depends on the final formulation and experimental validation."
+             data-ar="شرح مبسط للتصميم المقترح. يعتمد الأداء الفعلي على التركيبة النهائية والتحقق التجريبي من النتائج.">
+            A simplified overview of the intended design. Actual performance depends on the final formulation and experimental validation.
+          </p>
+        </div>
+
+        <div class="steps">
+          <article class="step">
+            <div class="step-number">STEP 01</div>
+     
